@@ -1,0 +1,34 @@
+<h1>{{ isEdit ? 'Edit' : 'Create'}} Task Details</h1>
+<hr>
+<form (ngSubmit)="CreateEditTask()" #frmTask="ngForm">
+  <div>Title*<input type="text" name="title" [ngModel]="taskobj.title" required />
+    <span *ngIf="this.frmTask.form.controls['title']?.touched && this.frmTask.form.controls['title']?.errors?.['required']">Title is required</span>
+</div>
+  <div>Description*<input type="text" name="desc" [ngModel]="taskobj.desc" required />
+    <span *ngIf="this.frmTask.form.controls['desc']?.touched && this.frmTask.form.controls['desc']?.errors?.['required']">Desc is required</span>
+</div>
+  <div>Assigned To<input type="text" name="assignedTo" [ngModel]="taskobj.assignedTo" /></div>
+  <div>Created At<input type="date" name="createdAt" [ngModel]="taskobj.createdAt" /></div>
+  <div>
+    priority
+    <select name="priority" name="priority" [(ngModel)]="taskobj.priority">
+      <option hidden>Priority</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+      <option value="critical">Critical</option>
+    </select>
+  </div>
+  <div>
+    status
+    <select name="status" [ngModel]="taskobj.status">
+      <option hidden>Status</option>
+      <option value="open">Open</option>
+      <option value="started">Started</option>
+      <option value="in-progress">In Progress</option>
+      <option value="complete">Complete</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!frmTask?.valid">{{ isEdit ? 'Edit Task' : 'Create Task'}}</button>
+  <button (click)="reset()" [disabled]="!frmTask?.dirty" >Reset</button>
+</form>

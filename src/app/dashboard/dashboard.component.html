@@ -1,0 +1,21 @@
+<table style="border: 1px solid black;">
+    <thead>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>AssignedTo</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of tasks">
+          <td>{{item.title}}</td>
+          <td>{{item.desc}}</td>
+          <td>{{item.assignedTo}}</td>
+          <td><button (click)="viewclick(item)">View</button><button (click)="EditViewClick(item)">Edit</button><button (click)="DeleteClick(item.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<app-task-details *ngIf="isShow" [SelTask]="task"></app-task-details>
+
+<app-create-task *ngIf="isEditCreate" [SelTask]="task">
+
+</app-create-task>
